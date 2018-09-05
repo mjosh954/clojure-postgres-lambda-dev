@@ -25,9 +25,8 @@
   (if (nil? command)
     (build-response 404 "Provide a command query param. (ex ?command=doc)")
     (build-response 200 (db/query-command-by-name command))))
-  ; TODO: Format results to json { status: complete, results [{ ... }] }
-  ; TODO: Format error response json. { status: error, error_reason: "Missing param... etc"} 
 
-(def app (handler wrap-params))
+(def app
+  (-> handler wrap-params))
 
 (run-jetty app {:port 8080})
