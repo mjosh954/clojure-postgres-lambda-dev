@@ -5,7 +5,7 @@
       ring.util.response
       ring.adapter.jetty))
 (require '[command.dbent :as db])
-
+(use '[ring.middleware.json :only [wrap-json-response]])
 
 (defn find-command
   [command]
@@ -21,12 +21,26 @@
     :headers {"Content-Type" "text/plain"}
     :body body})
 
+(defn build-error-payload 
+  [error-message]
+  {
+    :status "Error",
+    :error_message error-message })
+
+(defn build-success-payload
+  [results]
+  {
+    :status "Success"
+    :results results})
+
 (defn handler [{{command "command"} :params}]
   (if (nil? command)
-    (build-response 404 "Provide a command query param. (ex ?command=doc)")
-    (build-response 200 (db/query-command-by-name command))))
+    (build-response 404 (build-error-payload "Provide a command query param. (ex ?command=doc)"))
+    (build-response 200 (build-success-payload (db/query-command-by-name command)))))
 
 (def app
-  (-> handler wrap-params))
+  (-> handler 
+    wrap-params
+    wrap-json-response))
 
 (run-jetty app {:port 8080})
