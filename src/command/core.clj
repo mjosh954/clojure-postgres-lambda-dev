@@ -7,13 +7,8 @@
 (require '[command.dbent :as db])
 (use '[ring.middleware.json :only [wrap-json-response]])
 
-(defn find-command
-  [command]
+(defn find-command [command]
   (str "Searching for " command " command"))
-
-; (defn -handler 
-;   [s]
-;   (str "Hello " s "!"))
 
 (defn build-response 
   [status-code body]
@@ -21,17 +16,13 @@
     :headers {"Content-Type" "text/plain"}
     :body body})
 
-(defn build-error-payload 
-  [error-message]
-  {
-    :status "Error",
+(defn build-error-payload [error-message]
+  { :status "Error",
     :error_message error-message })
 
-(defn build-success-payload
-  [results]
-  {
-    :status "Success"
-    :results results})
+(defn build-success-payload [results]
+  { :status "Success"
+    :results results })
 
 (defn handler [{{command "command"} :params}]
   (if (nil? command)
