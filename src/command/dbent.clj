@@ -4,10 +4,10 @@
 (use 'korma.core)
 
 (def db-conf {:db "cldb"
-    :user "jmixer920"
-    :password "RT5JYz9cHMJ2PQaS"
-    :host "clojuredb.cywjxqkfebb1.us-west-2.rds.amazonaws.com"
-    :port "5432"})
+    :user ""
+    :password ""
+    :host ""
+    :port ""})
 
 (defdb dev (postgres db-conf))
 
