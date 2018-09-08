@@ -10,4 +10,4 @@
     [ring/ring-json "0.4.0"]
     [korma "0.4.0"]
     [org.postgresql/postgresql "42.2.5.jre7"]]
-  :main ^:skip-aot command.core)
+  :main ^:skip-aot command.entry)
