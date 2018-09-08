@@ -9,5 +9,7 @@
     [ring/ring-jetty-adapter "1.6.3"]
     [ring/ring-json "0.4.0"]
     [korma "0.4.0"]
-    [org.postgresql/postgresql "42.2.5.jre7"]]
+    [org.postgresql/postgresql "42.2.5.jre7"]
+    [environ "1.1.0"]]
+
   :main ^:skip-aot command.entry)

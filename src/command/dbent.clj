@@ -1,13 +1,16 @@
 (ns command.dbent
-  (:use [korma.db]))
+  (:use [korma.db])
+  (:require [environ.core :refer [env]]))
 
 (use 'korma.core)
 
-(def db-conf {:db "cldb"
-    :user ""
-    :password ""
-    :host ""
-    :port ""})
+(println (env :port))
+
+(def db-conf {:db (env :dbname)
+    :user (env :dbuser)
+    :password (env :dbpassword)
+    :host (env :database-url)
+    :port (env :port)})
 
 (defdb dev (postgres db-conf))
 

@@ -14,4 +14,4 @@
     wrap-json-response))
 
 
-(run-jetty app {:port 8080})
+(defonce server (run-jetty app {:port 8080}))
